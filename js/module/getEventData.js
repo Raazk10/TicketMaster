@@ -12,24 +12,36 @@ export default async function getEventData() {
     );
     suggestionList.innerHTML = "";
 
-    if (suggestions.venues) {
-      const searchSuggestions = document.querySelector(
-        ".header__search-suggestions"
-      );
-      searchSuggestions.style.display = "block";
-      suggestions.venues.forEach((suggestion) => {
-        const liElement = document.createElement("li");
-        liElement.textContent = suggestion.name;
+    const searchSuggestions = document.querySelector(
+      ".header__search-suggestions"
+    );
+    searchSuggestions.style.display = "block";
 
-        suggestionList.appendChild(liElement);
-      });
-    } else if (suggestions.events) {
-      suggestions.events.forEach((suggestion) => {
-        const liElement = document.createElement("li");
-        liElement.textContent = suggestion.name;
+    if (suggestions._embedded) {
+      if (suggestions._embedded.venues) {
+        suggestions._embedded.venues.forEach((suggestion) => {
+          const liElement = document.createElement("li");
+          liElement.textContent = `Venue: ${suggestion.name}`;
 
-        suggestionList.appendChild(liElement);
-      });
+          suggestionList.appendChild(liElement);
+        });
+      }
+      if (suggestions._embedded.attractions) {
+        suggestions._embedded.attractions.forEach((suggestion) => {
+          const liElement = document.createElement("li");
+          liElement.textContent = `Attraction: ${suggestion.name}`;
+
+          suggestionList.appendChild(liElement);
+        });
+      }
+      if (suggestions._embedded.events) {
+        suggestions._embedded.events.forEach((suggestion) => {
+          const liElement = document.createElement("li");
+          liElement.textContent = `Event: ${suggestion.name}`;
+
+          suggestionList.appendChild(liElement);
+        });
+      }
     }
   });
 }
