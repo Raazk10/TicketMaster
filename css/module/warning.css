@@ -1,0 +1,20 @@
+.error {
+	display: flex;
+	max-width: max-content;
+	justify-content: space-between;
+	align-items: center;
+	background-color: brown;
+	color: aliceblue;
+	font-size: 2rem;
+
+}
+
+.warning {
+
+	margin: 0 auto;
+
+}
+
+.hidden {
+	display: none;
+}
